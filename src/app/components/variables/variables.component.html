@@ -1,0 +1,68 @@
+<hr>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Componente de variables</h1>
+        </div>
+        <div class="col-lg-12">
+            <h3>Datos personales</h3>
+            <p>
+                <strong>Nombre:</strong>
+                {{nombre}}
+            </p>
+            <p>
+                <strong>Edad:</strong>
+                {{edad}}
+            </p>
+            <p>
+                <strong>Tecnologias:</strong>
+            </p>
+            <ul>
+                <li *ngFor="let t of tecnologias">{{t}}</li>
+            </ul>
+
+            <p>
+                <strong>Salario:</strong>
+                {{salario | currency }}
+            </p>
+
+
+            <p>
+                <strong>Impuesto (10%):</strong>
+                {{salario * 0.10 | currency }}
+            </p>
+
+            <p>
+                <strong>Liquido a pagar:</strong>
+                {{ salario - (salario * 0.10) | currency }}
+            </p>
+
+            <table class="table table-bordered ">
+                <thead>
+                    <tr class="table-dark">
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Salario</th>
+                        <th>Impuesto (10%)</th>
+                        <th>Liquido a Pagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of empleados">
+                        <td>{{d.nombre}}</td>
+                        <td>{{d.edad}}</td>
+                        <td
+                            [ngClass]="{'table-success': (d.salario <= 1200),  'table-warning': (d.salario >= 1200) && (d.salario < 5000), 'table-danger': d.salario>=5000 }">
+                            {{d.salario | currency}}</td>
+                        <td>{{d.salario * 0.10 | currency}}</td>
+                        <td>{{d.salario - (d.salario * 0.10) | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<hr>
